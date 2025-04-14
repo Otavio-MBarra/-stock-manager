@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./src/styles/output.css" />
     <script src="./src/scripts/app.js" defer></script>
   </head>
-  <body>
+  <body class="md:flex">
     <nav
       class="bg-orange-prymari relative shadow-md w-full md:w-64 md:h-screen p-4 flex md:flex-col items-center justify-between md:justify-start"
     >
@@ -75,5 +75,46 @@
         </li>
       </ul>
     </nav>
+    <main class="p-4 flex flex-col items-center pt-7">
+      <div class="w-full flex justify-between">
+        <h2 class="text-2xl font-bold">Geral</h2>
+        <button
+          class="bg-green-500 hover:bg-green-700 hover:text-white transition duration-150 ease-in-out rounded-full px-2 pb-1 text-2xl font-black w-fit text-center cursor-pointer"
+        >
+          +
+        </button>
+      </div>
+
+      <ul class="w-full pt-4 flex flex-col gap-3">
+        <li
+          class="bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
+        >
+          <div>
+            <p class="font-semibold">AX300</p>
+            <p class="font-light">Roteador</p>
+          </div>
+          <p class="text-lg font-semibold">20</p>
+        </li>
+
+        <li
+          class="bg-gray-300 flex justify-between items-center px-5 py-3 rounded-2xl"
+        >
+          <div>
+            <p class="font-semibold">AX300</p>
+            <p class="font-light">Roteador</p>
+          </div>
+          <p class="text-lg font-semibold">20</p>
+        </li>
+        <li
+          class="bg-gray-300 flex justify-between items-center px-5 py-3 rounded-2xl"
+        >
+          <div>
+            <p class="font-semibold">AX300</p>
+            <p class="font-light">Roteador</p>
+          </div>
+          <p class="text-lg font-semibold">20</p>
+        </li>
+      </ul>
+    </main>
   </body>
 </html>
