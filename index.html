@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./src/styles/output.css" />
     <script src="./src/scripts/app.js" defer></script>
   </head>
-  <body class="md:flex">
+  <body class="md:flex relative">
     <nav
       class="bg-orange-prymari relative shadow-md w-full md:w-64 md:h-screen p-4 flex md:flex-col items-center justify-between md:justify-start"
     >
@@ -29,55 +29,49 @@
 
       <ul
         id="menu"
-        class="-translate-y-[1000px] transition duration-200 ease-in-out rounded-b-lg absolute top-12 bg-orange-prymari right-0 p-4 w-3/6 flex flex-col mt-6 gap-7 md:w-full md:items-start md:translate-0"
+        class="-translate-y-[1000px] transition duration-200 ease-in-out rounded-b-lg absolute top-12 bg-orange-prymari right-0 p-4 w-3/6 flex flex-col mt-6 gap-5 md:w-full md:items-start md:translate-0"
       >
         <li>
           <a
             href="#"
             class="font-semibold text-lg text-black hover:text-gray-700"
-            >texto grande para exemplo</a
+            >Estoque</a
           >
         </li>
         <li>
           <a
             href="#"
             class="font-semibold text-lg text-black hover:text-gray-700"
-            >texto grande para exemplo</a
+            >Carros</a
           >
         </li>
         <li>
           <a
             href="#"
             class="font-semibold text-lg text-black hover:text-gray-700"
-            >texto grande para exemplo</a
+            >Usuario</a
           >
         </li>
         <li>
           <a
             href="#"
             class="font-semibold text-lg text-black hover:text-gray-700"
-            >texto grande para exemplo</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="font-semibold text-lg text-black hover:text-gray-700"
-            >Dashboard</a
-          >
-        </li>
-        <li>
-          <a
-            href="#"
-            class="font-semibold text-lg text-black hover:text-gray-700"
-            >Dashboard</a
+            >Sair</a
           >
         </li>
       </ul>
     </nav>
-    <main class="p-4 flex flex-col items-center pt-7">
-      <div class="w-full flex justify-between">
-        <h2 class="text-2xl font-bold">Geral</h2>
+    <main class="p-4 flex flex-col items-center pt-7 w-full">
+      <h2 class="text-2xl font-bold">Geral</h2>
+
+      <div class="w-full flex justify-between mt-2">
+        <input
+          type="search"
+          name=""
+          id=""
+          placeholder="Pesquisar"
+          class="border rounded-2xl w-fit px-2"
+        />
         <button
           class="bg-green-500 hover:bg-green-700 hover:text-white transition duration-150 ease-in-out rounded-full px-2 pb-1 text-2xl font-black w-fit text-center cursor-pointer"
         >
@@ -85,9 +79,18 @@
         </button>
       </div>
 
-      <ul class="w-full pt-4 flex flex-col gap-3">
+      <ul class="w-full pt-4 flex flex-col gap-3 md:flex-wrap md:flex-row">
         <li
-          class="bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
+          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
+        >
+          <div>
+            <p class="font-semibold">AX300</p>
+            <p class="font-light">Roteador</p>
+          </div>
+          <p class="text-lg font-semibold">20</p>
+        </li>
+        <li
+          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
         >
           <div>
             <p class="font-semibold">AX300</p>
@@ -97,7 +100,17 @@
         </li>
 
         <li
-          class="bg-gray-300 flex justify-between items-center px-5 py-3 rounded-2xl"
+          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
+        >
+          <div>
+            <p class="font-semibold">AX300</p>
+            <p class="font-light">Roteador</p>
+          </div>
+          <p class="text-lg font-semibold">20</p>
+        </li>
+
+        <li
+          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
         >
           <div>
             <p class="font-semibold">AX300</p>
@@ -106,7 +119,7 @@
           <p class="text-lg font-semibold">20</p>
         </li>
         <li
-          class="bg-gray-300 flex justify-between items-center px-5 py-3 rounded-2xl"
+          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
         >
           <div>
             <p class="font-semibold">AX300</p>
@@ -116,5 +129,144 @@
         </li>
       </ul>
     </main>
+
+    <div
+      id="modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4">
+        <div class="mb-4">
+          <label
+            for="nomeProduto"
+            class="block text-sm font-semibold text-gray-700 mb-1"
+            >Nome do Produto</label
+          >
+          <div class="flex items-center gap-2">
+            <input
+              id="nomeProduto"
+              type="text"
+              value="Nome do Produto"
+              class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <span class="text-gray-500 text-lg">✏️</span>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label
+            for="categoriaProduto"
+            class="block text-sm font-semibold text-gray-700 mb-1"
+            >Categoria</label
+          >
+          <div class="flex items-center gap-2">
+            <input
+              id="categoriaProduto"
+              type="text"
+              value="Categoria Exemplo"
+              class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <span class="text-gray-500 text-lg">✏️</span>
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="estoque"
+            class="block text-sm font-semibold text-gray-700 mb-1"
+            >Estoque</label
+          >
+          <input
+            id="estoque"
+            type="number"
+            min="0"
+            class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Quantidade em estoque"
+          />
+        </div>
+
+        <div class="flex justify-between">
+          <button
+            onclick="alert('Produto excluído')"
+            class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+          >
+            Excluir tudo
+          </button>
+
+          <button
+            onclick="document.getElementById('modal').classList.add('hidden')"
+            class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+          >
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      id="addProduct"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <button
+        onclick="document.getElementById('modal').classList.add('hidden')"
+        class="absolute cursor-pointer top-2 right-2 text-gray-500 hover:text-red-500 text-lg font-bold"
+        aria-label="Fechar modal"
+      >
+        ✖
+      </button>
+      <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4">
+        <div class="mb-4">
+          <label
+            for="nomeProduto"
+            class="block text-sm font-semibold text-gray-700 mb-1"
+            >Nome do Produto</label
+          >
+          <div class="flex items-center gap-2">
+            <input
+              id="nomeProduto"
+              type="text"
+              placeholder="Nome do Produto"
+              class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label
+            for="categoriaProduto"
+            class="block text-sm font-semibold text-gray-700 mb-1"
+            >Categoria</label
+          >
+          <div class="flex items-center gap-2">
+            <input
+              id="categoriaProduto"
+              type="text"
+              placeholder="Categoria Exemplo"
+              class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="estoque"
+            class="block text-sm font-semibold text-gray-700 mb-1"
+            >Estoque</label
+          >
+          <input
+            id="estoque"
+            type="number"
+            min="0"
+            class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Quantidade em estoque"
+          />
+        </div>
+
+        <button
+          onclick="document.getElementById('modal').classList.add('hidden')"
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
   </body>
 </html>
