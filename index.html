@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estoque</title>
     <link rel="stylesheet" href="./src/styles/output.css" />
-    <script src="./src/scripts/app.js" defer></script>
+    <script src="./src/scripts/app.js" defer type="module"></script>
   </head>
   <body class="md:flex relative">
     <nav
@@ -73,6 +73,7 @@
           class="border rounded-2xl w-fit px-2"
         />
         <button
+          id="btnAddProduct"
           class="bg-green-500 hover:bg-green-700 hover:text-white transition duration-150 ease-in-out rounded-full px-2 pb-1 text-2xl font-black w-fit text-center cursor-pointer"
         >
           +
@@ -81,7 +82,7 @@
 
       <ul class="w-full pt-4 flex flex-col gap-3 md:flex-wrap md:flex-row">
         <li
-          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
+          class="openModalEdit md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
         >
           <div>
             <p class="font-semibold">AX300</p>
@@ -131,9 +132,16 @@
     </main>
 
     <div
-      id="modal"
+      id="editItemModal"
       class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
     >
+      <button
+        id="closeEditItemModal"
+        class="absolute cursor-pointer top-2 right-2 text-gray-500 hover:text-red-500 text-lg font-bold"
+        aria-label="Fechar modal"
+      >
+        ✖
+      </button>
       <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4">
         <div class="mb-4">
           <label
@@ -202,17 +210,22 @@
       </div>
     </div>
     <div
-      id="addProduct"
+      id="addProductModal"
       class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
     >
       <button
-        onclick="document.getElementById('modal').classList.add('hidden')"
-        class="absolute cursor-pointer top-2 right-2 text-gray-500 hover:text-red-500 text-lg font-bold"
+        id="closeAddProductModal"
+        class="closedModal absolute cursor-pointer top-2 right-2 text-gray-500 hover:text-red-500 text-lg font-bold"
         aria-label="Fechar modal"
       >
         ✖
       </button>
-      <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4">
+      <form
+        id="addProductForm"
+        class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4"
+      >
+        <h3 class="text-lg font-bold mb-3.5">Novo produto</h3>
+
         <div class="mb-4">
           <label
             for="nomeProduto"
@@ -221,8 +234,10 @@
           >
           <div class="flex items-center gap-2">
             <input
-              id="nomeProduto"
+              id="nameProduct"
+              name="name"
               type="text"
+              required
               placeholder="Nome do Produto"
               class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -239,6 +254,8 @@
             <input
               id="categoriaProduto"
               type="text"
+              required
+              name="category"
               placeholder="Categoria Exemplo"
               class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -255,18 +272,20 @@
             id="estoque"
             type="number"
             min="0"
+            required
+            name="inStock"
             class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Quantidade em estoque"
           />
         </div>
 
         <button
-          onclick="document.getElementById('modal').classList.add('hidden')"
+          type="submit"
           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
         >
           Salvar
         </button>
-      </div>
+      </form>
     </div>
   </body>
 </html>
