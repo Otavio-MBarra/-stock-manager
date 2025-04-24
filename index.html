@@ -80,8 +80,10 @@
         </button>
       </div>
 
-      <ul class="w-full pt-4 flex flex-col gap-3 md:flex-wrap md:flex-row">
-        <li
+      <ul
+        class="container-products w-full pt-4 flex flex-col gap-3 md:flex-wrap md:flex-row"
+      >
+        <!-- <li
           class="openModalEdit md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
         >
           <div>
@@ -90,15 +92,6 @@
           </div>
           <p class="text-lg font-semibold">20</p>
         </li>
-        <li
-          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
-        >
-          <div>
-            <p class="font-semibold">AX300</p>
-            <p class="font-light">Roteador</p>
-          </div>
-          <p class="text-lg font-semibold">20</p>
-        </li>
 
         <li
           class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
@@ -119,6 +112,7 @@
           </div>
           <p class="text-lg font-semibold">20</p>
         </li>
+
         <li
           class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
         >
@@ -128,6 +122,15 @@
           </div>
           <p class="text-lg font-semibold">20</p>
         </li>
+        <li
+          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
+        >
+          <div>
+            <p class="font-semibold">AX300</p>
+            <p class="font-light">Roteador</p>
+          </div>
+          <p class="text-lg font-semibold">20</p>
+        </li> -->
       </ul>
     </main>
 
@@ -201,7 +204,7 @@
           </button>
 
           <button
-            onclick="document.getElementById('modal').classList.add('hidden')"
+            id="saveEditItem"
             class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
           >
             Salvar
