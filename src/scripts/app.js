@@ -1,4 +1,27 @@
-import Product from "./Product.js";
+import ProductController from "./ProductControler.js";
+
+const container = document.getElementById("container-list-products");
+
+const productController = new ProductController(container);
+
+// productController.addProduct("Laptop", "Electronics", 10);
+
+const addProductForm = document.getElementById("addProductForm");
+
+addProductForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const data = {
+    nameProduct: addProductForm.name.value,
+    category: addProductForm.category.value,
+    inStock: addProductForm.inStock.value,
+  };
+  console.log(data);
+
+  productController.addProduct(data.nameProduct, data.category, data.inStock);
+  addProductForm.reset();
+  productController.showProducts();
+});
+productController.renderProducts();
 
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
@@ -29,18 +52,4 @@ openModalEdit.forEach((element) => {
   element.addEventListener("click", () => {
     editItemModal.classList.toggle("hidden");
   });
-});
-
-const addProductForm = document.getElementById("addProductForm");
-const listProduct = [];
-addProductForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const data = {
-    nameProduct: addProductForm.name.value,
-    category: addProductForm.category.value,
-    inStock: addProductForm.inStock.value,
-  };
-  console.log(data);
-  listProduct.push(new Product(data.nameProduct, data.category, data.inStock));
-  console.log(listProduct);
 });
