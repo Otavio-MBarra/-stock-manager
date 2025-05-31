@@ -1,16 +1,5 @@
 import Product from "./Product.js";
-const listProduct = [
-  {
-    category: "teste",
-    name: "curso",
-    stock: "12",
-  },
-  {
-    category: "roteador",
-    name: "teste",
-    stock: "12",
-  },
-];
+const listProduct = [];
 
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
@@ -48,6 +37,7 @@ addProductForm.addEventListener("submit", (e) => {
     inStock: addProductForm.inStock.value,
   };
   listProduct.push(new Product(data.nameProduct, data.category, data.inStock));
+  saveProductList();
   showProductList(listProduct);
   modalAddProduct.classList.toggle("hidden");
 });
@@ -66,6 +56,8 @@ saveEditItem.addEventListener("click", (e) => {
 });
 
 function showProductList(listProduct) {
+  const list = JSON.parse(localStorage.getItem("listProduct"));
+
   const createProduct = listProduct.reduce((acc, product, index) => {
     return (
       acc +
@@ -100,4 +92,14 @@ function showProductList(listProduct) {
       );
     });
   });
+}
+
+function saveProductList() {
+  localStorage.setItem("listProduct", JSON.stringify(listProduct));
+}
+function getProductList() {
+  const list = JSON.parse(localStorage.getItem("listProduct"));
+  if (list) {
+    listProduct.push(...list);
+  }
 }
