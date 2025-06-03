@@ -4,16 +4,26 @@ class ProductController {
   constructor(container) {
     this.container = container;
     this.products = this.loadProducts();
+    this.renderProducts();
   }
   showProducts() {
-    console.log(this.products);
+    // console.log(this.products);
+    this.newId();
   }
 
   addProduct(name, category, stock) {
-    const product = new Product(name, category, stock);
+    const product = new Product(name, category, stock, this.newId());
     this.products.push(product);
     this.saveProducts();
-    console.log(this.saveProducts());
+    // console.log(this.saveProducts());
+  }
+  newId() {
+    let id;
+    console.log(this.products);
+
+    const randomNum = Math.floor(Math.random() * 10000) + 1;
+
+    return;
   }
 
   loadProducts() {
@@ -23,15 +33,11 @@ class ProductController {
   saveProducts() {
     localStorage.setItem("products", JSON.stringify(this.products));
   }
-  /*   <li
-          class="openModalEdit md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
-        >
-      
-        </li> */
+
   renderProducts() {
     this.products.forEach((product) => {
-      const element = document.createElement("li");
-      element.classList.add(
+      const productElement = document.createElement("li");
+      productElement.classList.add(
         "openModalEdit",
         "md:w-72",
         "bg-gray-300",
@@ -49,24 +55,16 @@ class ProductController {
         "cursor-pointer",
         "shadow-lg"
       );
-      element.innerHTML = `
-            <div>
+      productElement.innerHTML = `
+                  <div>
             <p class="font-semibold">${product.name}</p>
-            <p class="font-light">Roteador</p>
+            <p class="font-light">${product.category}</p>
           </div>
-          <p class="text-lg font-semibold">20</p>
-        </li>
-        <li
-          class="md:w-72 bg-gray-300 hover:bg-gray-600 hover:text-white transition duration-200 ease-in-out flex justify-between items-center px-5 py-3 rounded-2xl cursor-pointer shadow-lg"
-        >
-          <div>
-            <p class="font-semibold">AX300</p>
-            <p class="font-light">Roteador</p>
-          </div>
-          <p class="text-lg font-semibold">20</p>
+          <p class="text-lg font-semibold">${product.stock}</p>
       `;
 
-      console.log(element);
+      this.container.appendChild(productElement);
+      // console.log(productElement);
     });
   }
 }

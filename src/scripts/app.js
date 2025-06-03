@@ -1,10 +1,9 @@
 import ProductController from "./ProductControler.js";
+// console.log(localStorage.length);
 
 const container = document.getElementById("container-list-products");
 
 const productController = new ProductController(container);
-
-// productController.addProduct("Laptop", "Electronics", 10);
 
 const addProductForm = document.getElementById("addProductForm");
 
@@ -20,8 +19,10 @@ addProductForm.addEventListener("submit", (e) => {
   productController.addProduct(data.nameProduct, data.category, data.inStock);
   addProductForm.reset();
   productController.showProducts();
+  container.innerHTML = "";
+  productController.renderProducts();
 });
-productController.renderProducts();
+productController.showProducts();
 
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("menu");
