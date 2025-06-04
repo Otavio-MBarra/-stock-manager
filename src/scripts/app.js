@@ -34,8 +34,6 @@ const btncloseAddProductModal = document.querySelector("#closeAddProductModal");
 const containerProducts = document.querySelector(".container-products");
 // const addProductForm = document.getElementById("addProductForm");
 
-showProductList(listProduct);
-
 menuBtn.addEventListener("click", () => {
   menu.classList.toggle("translate-0");
   menu.classList.toggle("-translate-y-[1000px]");
@@ -51,9 +49,11 @@ btncloseAddProductModal.addEventListener("click", (e) => {
 btnAddProduct.addEventListener("click", () => {
   modalAddProduct.classList.toggle("hidden");
 });
+const openModalEdit = document.querySelectorAll(".openModalEdit");
 
 openModalEdit.forEach((element) => {
   element.addEventListener("click", () => {
     editItemModal.classList.toggle("hidden");
+    console.log("ola");
   });
 });

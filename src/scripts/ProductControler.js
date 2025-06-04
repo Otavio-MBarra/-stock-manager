@@ -7,23 +7,24 @@ class ProductController {
     this.renderProducts();
   }
   showProducts() {
-    // console.log(this.products);
-    this.newId();
+    console.log(this.products);
   }
 
   addProduct(name, category, stock) {
     const product = new Product(name, category, stock, this.newId());
     this.products.push(product);
     this.saveProducts();
-    // console.log(this.saveProducts());
+    console.log(this.saveProducts());
   }
   newId() {
-    let id;
-    console.log(this.products);
+    let newId;
+    let test;
+    do {
+      newId = Math.floor(Math.random() * 10000) + 1;
+      test = this.products.some((p) => p.id === newId);
+    } while (test);
 
-    const randomNum = Math.floor(Math.random() * 10000) + 1;
-
-    return;
+    return newId;
   }
 
   loadProducts() {
@@ -39,6 +40,7 @@ class ProductController {
       const productElement = document.createElement("li");
       productElement.classList.add(
         "openModalEdit",
+        `${product.id}`,
         "md:w-72",
         "bg-gray-300",
         "hover:bg-gray-600",
@@ -64,7 +66,6 @@ class ProductController {
       `;
 
       this.container.appendChild(productElement);
-      // console.log(productElement);
     });
   }
 }
