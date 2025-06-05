@@ -97,7 +97,10 @@
       >
         ✖
       </button>
-      <div class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4">
+      <form
+        id="editProductForm"
+        class="bg-white rounded-lg p-6 w-full max-w-md shadow-lg mx-4"
+      >
         <div class="mb-4">
           <label
             for="nomeProduto"
@@ -107,6 +110,7 @@
           <div class="flex items-center gap-2">
             <input
               id="nomeProduto"
+              name="nomeProduto"
               type="text"
               value="Nome do Produto"
               class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -124,6 +128,7 @@
           <div class="flex items-center gap-2">
             <input
               id="categoriaProduto"
+              name="categoriaProduto"
               type="text"
               value="Categoria Exemplo"
               class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -140,6 +145,7 @@
           >
           <input
             id="estoque"
+            name="estoque"
             type="number"
             min="0"
             class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -149,20 +155,22 @@
 
         <div class="flex justify-between">
           <button
-            onclick="alert('Produto excluído')"
+            type="button"
+            id="deleteAllBtn"
             class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
           >
             Excluir tudo
           </button>
 
           <button
+            type="submit"
             id="saveEditItem"
             class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
           >
             Salvar
           </button>
         </div>
-      </div>
+      </form>
     </div>
     <div
       id="addProductModal"

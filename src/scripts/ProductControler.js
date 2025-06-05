@@ -38,9 +38,9 @@ class ProductController {
   renderProducts() {
     this.products.forEach((product) => {
       const productElement = document.createElement("li");
+      productElement.setAttribute("id", `id-${product.id}`);
       productElement.classList.add(
         "openModalEdit",
-        `${product.id}`,
         "md:w-72",
         "bg-gray-300",
         "hover:bg-gray-600",

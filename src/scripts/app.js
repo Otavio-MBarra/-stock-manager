@@ -50,10 +50,32 @@ btnAddProduct.addEventListener("click", () => {
   modalAddProduct.classList.toggle("hidden");
 });
 const openModalEdit = document.querySelectorAll(".openModalEdit");
-
 openModalEdit.forEach((element) => {
   element.addEventListener("click", () => {
     editItemModal.classList.toggle("hidden");
-    console.log("ola");
+    const products = JSON.parse(localStorage.getItem("products"));
+    const id = Number(element.id.slice(3, element.id.length));
+    const index = products.findIndex((p) => p.id === id);
+    console.log(products[index]);
+    const formProduct = editItemModal.children[1];
+
+    const data = {
+      name: formProduct.nomeProduto,
+      category: formProduct.categoriaProduto,
+      stock: formProduct.estoque,
+    };
+    const { name, category, stock } = products[index];
+
+    data.name.value = name;
+    data.category.value = category;
+    data.stock.value = stock;
+    formProduct.addEventListener("submit", (e) => {
+      products[index].name = data.name.value;
+      products[index].category = data.category.value;
+      products[index].stock = data.stock.value;
+
+      console.log(products[index]);
+      localStorage.setItem("products", JSON.stringify(products));
+    });
   });
 });
