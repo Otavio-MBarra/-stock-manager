@@ -8,7 +8,6 @@ const productController = new ProductController(container);
 const addProductForm = document.getElementById("addProductForm");
 
 addProductForm.addEventListener("submit", (e) => {
-  e.preventDefault();
   const data = {
     nameProduct: addProductForm.name.value,
     category: addProductForm.category.value,
@@ -50,6 +49,7 @@ btnAddProduct.addEventListener("click", () => {
   modalAddProduct.classList.toggle("hidden");
 });
 const openModalEdit = document.querySelectorAll(".openModalEdit");
+
 openModalEdit.forEach((element) => {
   element.addEventListener("click", () => {
     editItemModal.classList.toggle("hidden");
@@ -79,3 +79,18 @@ openModalEdit.forEach((element) => {
     });
   });
 });
+
+const searchInput = document.querySelector("#searchItem");
+
+searchInput.addEventListener("input", (e) => {
+  console.log(buscar(searchInput.value));
+});
+
+function buscar(value) {
+  const products = JSON.parse(localStorage.getItem("products"));
+
+  const teste = products.filter((produto) => {
+    return produto.name.includes(value);
+  });
+  return teste;
+}

@@ -68,7 +68,7 @@
         <input
           type="search"
           name=""
-          id=""
+          id="searchItem"
           placeholder="Pesquisar"
           class="border rounded-2xl w-fit px-2"
         />
@@ -110,6 +110,7 @@
           <div class="flex items-center gap-2">
             <input
               id="nomeProduto"
+              required
               name="nomeProduto"
               type="text"
               value="Nome do Produto"
@@ -130,6 +131,7 @@
               id="categoriaProduto"
               name="categoriaProduto"
               type="text"
+              required
               value="Categoria Exemplo"
               class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -147,6 +149,7 @@
             id="estoque"
             name="estoque"
             type="number"
+            required
             min="0"
             class="border rounded px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Quantidade em estoque"
