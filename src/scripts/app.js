@@ -83,7 +83,18 @@ openModalEdit.forEach((element) => {
 const searchInput = document.querySelector("#searchItem");
 
 searchInput.addEventListener("input", (e) => {
-  console.log(buscar(searchInput.value));
+  if (searchInput.value.length > 2) {
+    try {
+      let teste = buscar(searchInput.value);
+      container.innerHTML = "";
+      productController.renderProducts(teste);
+    } catch (error) {
+      alert(error.message);
+      searchInput.value = "";
+      container.innerHTML = "";
+      productController.renderProducts();
+    }
+  }
 });
 
 function buscar(value) {
@@ -92,5 +103,10 @@ function buscar(value) {
   const teste = products.filter((produto) => {
     return produto.name.includes(value);
   });
+  if (teste.length == 0) {
+    throw new Error("Produto não existe");
+  }
+  console.log(teste.length);
+
   return teste;
 }

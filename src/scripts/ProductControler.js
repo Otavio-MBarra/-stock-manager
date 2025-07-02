@@ -35,8 +35,11 @@ class ProductController {
     localStorage.setItem("products", JSON.stringify(this.products));
   }
 
-  renderProducts() {
-    this.products.forEach((product) => {
+  renderProducts(searchName) {
+    let productsExists = searchName || this.products;
+    console.log(productsExists);
+
+    productsExists.forEach((product) => {
       const productElement = document.createElement("li");
       productElement.setAttribute("id", `id-${product.id}`);
       productElement.classList.add(
