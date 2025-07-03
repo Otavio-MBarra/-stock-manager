@@ -30,7 +30,7 @@ const modalAddProduct = document.getElementById("addProductModal");
 const btncloseEditItemModal = document.querySelector("#closeEditItemModal");
 const editItemModal = document.getElementById("editItemModal");
 const btncloseAddProductModal = document.querySelector("#closeAddProductModal");
-const containerProducts = document.querySelector(".container-products");
+const containerProducts = document.querySelector("#container-list-products");
 // const addProductForm = document.getElementById("addProductForm");
 
 menuBtn.addEventListener("click", () => {
@@ -48,44 +48,12 @@ btncloseAddProductModal.addEventListener("click", (e) => {
 btnAddProduct.addEventListener("click", () => {
   modalAddProduct.classList.toggle("hidden");
 });
-const openModalEdit = document.querySelectorAll(".openModalEdit");
-
-openModalEdit.forEach((element) => {
-  element.addEventListener("click", () => {
-    editItemModal.classList.toggle("hidden");
-    const products = JSON.parse(localStorage.getItem("products"));
-    const id = Number(element.id.slice(3, element.id.length));
-    const index = products.findIndex((p) => p.id === id);
-    console.log(products[index]);
-    const formProduct = editItemModal.children[1];
-
-    const data = {
-      name: formProduct.nomeProduto,
-      category: formProduct.categoriaProduto,
-      stock: formProduct.estoque,
-    };
-    const { name, category, stock } = products[index];
-
-    data.name.value = name;
-    data.category.value = category;
-    data.stock.value = stock;
-    formProduct.addEventListener("submit", (e) => {
-      products[index].name = data.name.value;
-      products[index].category = data.category.value;
-      products[index].stock = data.stock.value;
-
-      console.log(products[index]);
-      localStorage.setItem("products", JSON.stringify(products));
-    });
-  });
-});
-
 const searchInput = document.querySelector("#searchItem");
 
 searchInput.addEventListener("input", (e) => {
   if (searchInput.value.length > 2) {
     try {
-      let teste = buscar(searchInput.value);
+      let teste = search(searchInput.value);
       container.innerHTML = "";
       productController.renderProducts(teste);
     } catch (error) {
@@ -97,16 +65,52 @@ searchInput.addEventListener("input", (e) => {
   }
 });
 
-function buscar(value) {
+function search(value) {
   const products = JSON.parse(localStorage.getItem("products"));
-
-  const teste = products.filter((produto) => {
-    return produto.name.includes(value);
+  const productsExists = products.filter((product) => {
+    return product.name.includes(value);
   });
-  if (teste.length == 0) {
+  if (productsExists.length == 0) {
     throw new Error("Produto não existe");
   }
-  console.log(teste.length);
+  return productsExists;
+}
 
-  return teste;
+containerProducts.addEventListener("click", (e) => {
+  const item = e.target.closest(".openModalEdit");
+  if (!item) return;
+  const id = Number(item.id.slice(3, item.id.length));
+  openModalEditProduct(id);
+});
+function openModalEditProduct(id) {
+  const products = JSON.parse(localStorage.getItem("products"));
+
+  const index = products.findIndex((p) => p.id === id);
+  if (index === -1) return;
+
+  const product = products[index];
+
+  editItemModal.classList.remove("hidden");
+
+  editValuesProduct(product, products, index);
+}
+function editValuesProduct(product, products, index) {
+  const form = editItemModal.querySelector("form");
+  form.querySelector("#nomeProduto").value = product.name;
+  form.querySelector("#categoriaProduto").value = product.category;
+  form.querySelector("#estoque").value = product.stock;
+  const data = {
+    name: form.nomeProduto,
+    category: form.categoriaProduto,
+    stock: form.estoque,
+  };
+
+  form.addEventListener("submit", (e) => {
+    products[index].name = data.name.value;
+    products[index].category = data.category.value;
+    products[index].stock = data.stock.value;
+
+    console.log(products[index]);
+    localStorage.setItem("products", JSON.stringify(products));
+  });
 }
